@@ -1,0 +1,22 @@
+#login without password
+mongo --host 127.0.0.1 -u __system -p "$(tr -d '\011-\015\040' < /opt/mongodb/conf/mongodb/mongod.conf.key)" --authenticationDatabase local
+#create db
+create db-name
+use db-name
+db.createCollection("db-col")
+{ "ok" : 1 }
+create table tb-name
+#create user
+use admin
+db.createUser(
+      {
+          user: "admin",
+          pwd: "admin",
+          roles: ['root']
+      }
+  )
+#change user password
+db.changeUserPassword("user", "new-pass")
+#backup db
+#restore db
+#show db size

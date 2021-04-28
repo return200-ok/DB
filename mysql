@@ -1,0 +1,18 @@
+
+
+#login without password
+mysql --defaults-file=/etc/mysql/debian.cnf
+#create db
+CREATE DATABASE db-name DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+#create user
+GRANT ALL ON db-name.* TO 'db-user'@'%' IDENTIFIED BY 'db-pass';
+FLUSH PRIVILEGES;
+#backup db
+mysqldump --defaults-file=/etc/mysql/debian.cnf db-name > db-backup-name.sql
+mysqldump --defaults-file=/etc/mysql/debian.cnf db-name -t table-name > db-backup-table-name.sql
+#restore db
+mysql --defaults-file=/etc/mysql/debian.cnf db-name < db-backup-name.sql
+mysql --defaults-file=/etc/mysql/debian.cnf db-name < db-backup-table-name.sql
+#show db size
+SELECT table_schema AS "Database", SUM(data_length + index_length) / 1024 / 1024 AS "Size (MB)" FROM information_schema.TABLES GROUP BY table_schema;
+SELECT table_schema AS "Database", SUM(data_length + index_length) / 1024 / 1024 / 1024 AS "Size (GB)" FROM information_schema.TABLES GROUP BY table_schema;

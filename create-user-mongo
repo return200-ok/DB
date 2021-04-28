@@ -1,0 +1,23 @@
+use admin
+db.createUser(
+      {
+          user: "admin",
+          pwd: "admin",
+          roles: ['root']
+      }
+  )
+
+  mongo --host 127.0.0.1 -u __system -p "$(tr -d '\011-\015\040' < /opt/mongodb/conf/mongodb/mongod.conf.key)" --authenticationDatabase local
+  128.199.237.59
+rs.initiate({_id:"rs0", members: [{"_id":1, "host":"10.130.210.131:27017"}]});
+mongo --host 127.0.0.1 -u __system -p "$(tr -d '\011-\015\040' < /var/local/keyfile)" --authenticationDatabase local
+pTVVPxqT7Bt7OS2BUsiI
+db.changeUserPassword("admin", "pTVVPxqT7Bt7OS2BUsiI")
+mongo --host mo-mdb-product-bamboo.eway.vn -u admin -p
+
+
+db.createUser({
+user : 'bamboo',
+pwd : 'xuGNu9ycU5ee3yiHqzea',
+ roles : [{ role : 'readWrite', db : 'bamboo' }, { role : 'readWrite', db : 'bamboo_meta' }] 
+})
