@@ -6,7 +6,7 @@ mysql --defaults-file=/etc/mysql/debian.cnf
 CREATE DATABASE db-name DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 #create user
 CREATE USER 'db-user'@'%' IDENTIFIED BY 'user-pass';
-#grant permission: ALL PRIVILEGES, CREATE, DROP, DELETE, INSERT, SELECT, UPDATE, GRANT OPTION.
+#grant permission: ALL PRIVILEGES, CREATE, DROP, DELETE, INSERT, SELECT, UPDATE, ALTER, GRANT OPTION.
 GRANT permission ON db-name.* TO 'db-user'@'%' IDENTIFIED BY 'user-pass';
 FLUSH PRIVILEGES;
 #backup db
