@@ -18,5 +18,8 @@ db.createUser(
 #change user password
 db.changeUserPassword("user", "new-pass")
 #backup db
+mongodump --host --port --gzip --archive=mongodb.gz
 #restore db
+mongorestore --gzip --archive=/path/to/file.gz --drop
 #show db size
+
