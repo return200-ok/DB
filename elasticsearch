@@ -1,0 +1,40 @@
+#check health
+curl -X GET "localhost:9200/_cat/health?v"
+#get nodes
+curl -X GET "localhost:9200/_cat/nodes?v"
+#get indexs
+curl -X GET "localhost:9200/_cat/indices?v"
+#put index
+curl -X PUT "localhost:9200/index_name?pretty"
+#delete index
+DELET /index_name?pretty
+#save document to index
+curl -X PUT "localhost:9200/index_name/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "caolv",
+  "age": "20"
+}'
+#get document from index
+curl -X GET "localhost:9200/index_name/_doc/1?pretty"
+curl -X GET "localhost:9200/index_name/_doc/2?pretty"
+...
+#delete document from index
+curl -X DELETE localhost:9200/index_name/_doc/1?pretty
+#delete all of a index
+curl -X DELETE localhost:9200/index_name?pretty
+
+
+#CHẠY GỘP LỆNH
+#Các thao tác trên tài liệu như update, create, delete có thể tập hợp vào một file JSON
+#gồm cả dữ liệu rồi yêu cầu ES thực hiện tập lệnh đó bằng cách POST tới /_bulk.
+curl -X POST "localhost:9200/_bulk" -H 'Content-Type: application/json' -d'
+{ "index" : { "_index" : "test", "_id" : "1" } }
+{ "field1" : "value1" }
+{ "delete" : { "_index" : "test", "_id" : "2" } }
+{ "create" : { "_index" : "test", "_id" : "3" } }
+{ "field1" : "value3" }
+{ "update" : {"_id" : "1", "_index" : "test"} }
+{ "doc" : {"field2" : "value2"} }
+'
+# nếu dữ liệu này lưu ở file data.json thì thực hiện nạp vào bằng cách
+$ curl -s -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/_bulk --data-binary "@data.json";
