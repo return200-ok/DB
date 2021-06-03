@@ -23,3 +23,18 @@ mongodump --host --port --gzip --archive=mongodb.gz
 mongorestore --gzip --archive=/path/to/file.gz --drop
 #show db size
 
+
+create bamboo
+use bamboo
+db.user.insert({name: "init", id: 1})
+
+db.createUser(
+   {
+     user: "bbmt",
+     pwd: "dfgRETdfjkdSd",   
+     roles:
+       [
+         { role: "readWrite", db: "bamboo-meta" }
+       ]
+   }
+)
