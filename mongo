@@ -38,3 +38,7 @@ db.createUser(
        ]
    }
 )
+
+#drop db,user
+db.dropDatabase()
+db.dropUser()
