@@ -27,3 +27,6 @@ SELECT table_schema AS "Database", SUM(data_length + index_length) / 1024 / 1024
 
 #chaneg root password
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassword';
+
+#show total number of connection to server
+mysqladmin extended-status | grep -wi 'threads_connected\|threads_running' | awk '{ print $2,$4}'
