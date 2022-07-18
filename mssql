@@ -1,24 +1,34 @@
-#login
+-- login
 sqlcmd -S localhost,1433 -U SA 
 
-#show all databases
+-- show all databases
 SELECT name FROM master.dbo.sysdatabases
 or
 EXEC sp_databases
 
-#show all tables
-SELECT
-  *
-FROM
-  databaseName.INFORMATION_SCHEMA.TABLES;
+-- show all tables
+SELECT * FROM databaseName.INFORMATION_SCHEMA.TABLES;
 GO
 
-#restore databases
+-- restore databases
 RESTORE DATABASE DB5343 FROM DISK = ‘C:\DB5343.BAK’
 WITH RECOVERY
 GO 
 
-#grant permission to user
+-- create user
+USE <database-name>
+-- Creates the login AbolrousHazem with password '340$Uuxwp7Mcxo7Khy'.  
+CREATE LOGIN AbolrousHazem   
+    WITH PASSWORD = '340$Uuxwp7Mcxo7Khy';  
+GO  
+-- Creates a database user for the login created above.  
+CREATE USER AbolrousHazem FOR LOGIN AbolrousHazem;  
+GO
+
+
+-- grant permission to user
 USE HR;
 GRANT SELECT, INSERT, UPDATE, DELETE ON EmployeeAddress TO Steve;
+
+
 
