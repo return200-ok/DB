@@ -1,0 +1,19 @@
+#login
+sqlcmd -S localhost,1433 -U SA 
+
+#show all databases
+SELECT name FROM master.dbo.sysdatabases
+or
+EXEC sp_databases
+
+#show all tables
+SELECT
+  *
+FROM
+  databaseName.INFORMATION_SCHEMA.TABLES;
+GO
+
+#restore databases
+RESTORE DATABASE DB5343 FROM DISK = ‘C:\DB5343.BAK’
+WITH RECOVERY
+GO 
