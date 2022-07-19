@@ -13,9 +13,9 @@ DATE=`date +%m%d`
 ################################################################
 ################## Update below values  ########################
  
-DB_BACKUP_PATH='/data/backup/mysql/pinggo-service01'
-HOST="pinggo-service01"
-DATABASE_NAME="pinggo"
+DB_BACKUP_PATH='/data/backup/mysql/database_name-server'
+HOST="database_name-server"
+DATABASE_NAME="database_name"
 CMD="mysql --defaults-file=/etc/mysql/debian.cnf"
 BACKUP_RETAIN_DAYS=14   ## Number of days to keep local backup copy
 LOGFILE='/root/mysql-backup-output.log'
@@ -33,15 +33,15 @@ echo "${DATE} Backup started for database - ${DATABASE_NAME}" >> $LOGFILE 2>&1
  
  #for DB in $DATABASE_NAME; do
    #$CMD $DB > ${DB_BACKUP_PATH}/${TODAY}/${DB}-${TODAY}.sql
-rsync -a root@10.130.66.203::mysql/${HOST}/${HOST}_db_${DATE}/${DATABASE_NAME}.${DATE}*.sql.gz ${DB_BACKUP_PATH}/${HOST}_db_${DATE} && \
+rsync -a root@100.130.66.200::mysql/${HOST}/${HOST}_db_${DATE}/${DATABASE_NAME}.${DATE}*.sql.gz ${DB_BACKUP_PATH}/${HOST}_db_${DATE} && \
 gunzip < ${DB_BACKUP_PATH}/${HOST}_db_${DATE}/${DATABASE_NAME}.${DATE}*.sql.gz | $CMD $DATABASE_NAME
 #gzip ${DB_BACKUP_PATH}/${TODAY}/${DB}-${TODAY}.sql
 #done
 
 if [ $? -eq 0 ]; then
-  TEXT=$(echo "${DATE_EXEC} Database $DATABASE_NAME backup successfully completed on adflex-dev-501") && curl -s -X POST --max-time $TIMEOUT $URL -d "chat_id=$USERID" -d text="$TEXT" > /dev/null
+  TEXT=$(echo "${DATE_EXEC} Database $DATABASE_NAME backup successfully completed on backup_server") && curl -s -X POST --max-time $TIMEOUT $URL -d "chat_id=$USERID" -d text="$TEXT" > /dev/null
 else
-  TEXT1=$(echo "${DATE_EXEC} Error found during backup on adflex-dev-501") && curl -s -X POST --max-time $TIMEOUT $URL -d "chat_id=$USERID" -d text="$TEXT1" > /dev/null
+  TEXT1=$(echo "${DATE_EXEC} Error found during backup on backup_server") && curl -s -X POST --max-time $TIMEOUT $URL -d "chat_id=$USERID" -d text="$TEXT1" > /dev/null
   exit 1
 fi
  
