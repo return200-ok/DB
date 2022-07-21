@@ -1,9 +1,9 @@
 sqlcmd -S localhost,1433 -U SA
 USE databasename;
 GO
-CREATE LOGIN username WITH PASSWORD = '340$Uuxwp7Mcxo7Khy'
+CREATE LOGIN adminuser WITH PASSWORD = 'Changepass123'
 GO
-CREATE USER username FOR LOGIN username;
+CREATE USER adminuser FOR LOGIN adminuser;
 GO
-GRANT SELECT, INSERT, UPDATE, DELETE TO username;
+GRANT SELECT, INSERT, UPDATE, DELETE TO adminuser;
 GO
