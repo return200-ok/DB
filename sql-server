@@ -31,3 +31,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON EmployeeAddress TO Steve;
 
 
 
+-- update password data in user table
+-- Bcrypt with value 'strongpasswd'
+UPDATE SYS_USER      
+SET PASSWORD='$2a$12$bNdf0/VSb7hXgUodvRMaruiuy21f9IEFQxnV4HCG.hRGz3D4PYQKm' 
+WHERE USERNAME = '10026';   
