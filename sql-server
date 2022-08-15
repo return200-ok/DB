@@ -16,9 +16,9 @@ GO
 
 -- create user
 USE <database-name>
--- Creates the login AbolrousHazem with password '340$Uuxwp7Mcxo7Khy'.  
+-- Creates the login AbolrousHazem with password '340Uuxwp7Mcxo7Khy'.  
 CREATE LOGIN AbolrousHazem   
-    WITH PASSWORD = '340$Uuxwp7Mcxo7Khy';  
+    WITH PASSWORD = '340Uuxwp7Mcxo7Khy';  
 GO  
 -- Creates a database user for the login created above.  
 CREATE USER AbolrousHazem FOR LOGIN AbolrousHazem;  
