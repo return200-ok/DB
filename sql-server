@@ -38,10 +38,10 @@ SET PASSWORD='$2a$12$bNdf0/VSb7hXgUodvRMaruiuy21f9IEFQxnV4HCG.hRGz3D4PYQKm'
 WHERE USERNAME = '10026';   
 
 
-RESTORE DATABASE dbname FROM DISK = '/home/database-/dbname.bak' WITH RECOVERY
+RESTORE DATABASE dbname FROM DISK = '/home/database/dbname.bak' WITH RECOVERY
 
 
-BACKUP DATABASE dbname TO DISK = '/home/database-/dbname.bak'
+BACKUP DATABASE dbname TO DISK = '/home/database/dbname.bak'
 
 
 
