@@ -30,3 +30,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassword';
 
 #show total number of connection to server
 mysqladmin extended-status | grep -wi 'threads_connected\|threads_running' | awk '{ print $2,$4}'
+
+#change character on table
+ALTER TABLE email_template
+  CHARACTER SET 'utf8'
+  COLLATE 'utf8_general_ci';
